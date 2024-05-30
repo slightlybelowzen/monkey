@@ -1,10 +1,7 @@
 name = "monkey"
 version = "1.0.0"
 
-# Fill out these fields if you intend to generate HTML documentation or publish
-# your project to the Hex package manager.
-#
-# description = ""
+# description = "A simple compiler for the monkey programming language based on the book Writing a Compiler by Thorsten Ball"
 # licences = ["Apache-2.0"]
 # repository = { type = "github", user = "username", repo = "project" }
 # links = [{ title = "Website", href = "https://gleam.run" }]
@@ -14,6 +11,8 @@ version = "1.0.0"
 
 [dependencies]
 gleam_stdlib = ">= 0.34.0 and < 2.0.0"
+simplifile = ">= 1.7.0 and < 2.0.0"
+argv = ">= 1.0.2 and < 2.0.0"
 
 [dev-dependencies]
 gleeunit = ">= 1.0.0 and < 2.0.0"
