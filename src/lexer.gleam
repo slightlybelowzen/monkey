@@ -1,3 +1,4 @@
+// import gleam/io
 import gleam/option.{type Option, None, Some}
 import gleam/string
 import tokens.{type Token, Token}
@@ -18,13 +19,16 @@ pub fn init_lexer(input: String) -> Lexer {
 
 pub fn advance(lexer: Lexer) -> Lexer {
   case lexer.position >= string.length(lexer.input) {
-    True -> Lexer(lexer.input, lexer.position, None)
+    // we're done, get outta here
+    True -> {
+      Lexer(lexer.input, lexer.position, None)
+    }
     False -> {
       let position = lexer.position + 1
       Lexer(
         lexer.input,
         position,
-        Some(string.slice(lexer.input, position, position + 1)),
+        Some(string.slice(lexer.input, position, position)),
       )
     }
   }

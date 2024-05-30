@@ -1,6 +1,6 @@
 import gleeunit
 
-// import gleam/io.{debug}
+import gleam/io.{debug}
 import gleam/option.{Some}
 import gleeunit/should
 import lexer.{next_token}
@@ -12,6 +12,7 @@ pub fn main() {
 
 pub fn lexer_single_character_test() {
   let lexer = lexer.init_lexer("=+(){},;")
+  debug(lexer)
   // let expected_tokens = [
   //   Token(token_type: tokens.Assign, literal: "="),
   //   Token(token_type: tokens.Plus, literal: "+"),
