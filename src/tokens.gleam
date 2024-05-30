@@ -25,3 +25,7 @@ pub type TokenType {
   Function
   Let
 }
+
+pub type Token {
+  Token(literal: String, token_type: TokenType)
+}
