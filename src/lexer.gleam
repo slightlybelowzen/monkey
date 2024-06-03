@@ -1,4 +1,3 @@
-// import gleam/io
 import gleam/option.{type Option, None, Some}
 import gleam/string
 import tokens.{type Token, Token}
@@ -10,8 +9,7 @@ pub type Lexer {
 
 /// Initialise the lexer based on the length of the input
 pub fn init_lexer(input: String) -> Lexer {
-  // instead of pattern matching on the input
-  // simply use the fact that the first function can return an Err(Nil)
+  // instead of pattern matching on the input simply use first
   let lexer = case string.first(input) {
     Ok(character) -> Lexer(input, 0, Some(character))
     _ -> Lexer(input, 0, None)
@@ -19,7 +17,7 @@ pub fn init_lexer(input: String) -> Lexer {
   lexer
 }
 
-/// Return a new lexer with the position field incremented by 1, and character at that index updated
+/// Return a new lexer with the position field incremented by 1, and the character at that index
 pub fn advance(lexer: Lexer) -> Lexer {
   case lexer.position >= string.length(lexer.input) {
     // we're done, get outta here
@@ -31,7 +29,7 @@ pub fn advance(lexer: Lexer) -> Lexer {
       Lexer(
         lexer.input,
         position,
-        Some(string.slice(lexer.input, position, position)),
+        Some(string.slice(from: lexer.input, at_index: position, length: 1)),
       )
     }
   }
@@ -44,10 +42,10 @@ pub fn next_token(lexer: Lexer) -> #(Lexer, Option(Token)) {
       case ch {
         ";" -> #(advance(lexer), Some(Token(ch, tokens.Semicolon)))
         "=" -> #(advance(lexer), Some(Token(ch, tokens.Assign)))
-        "(" -> #(advance(lexer), Some(Token(ch, tokens.RParen)))
-        ")" -> #(advance(lexer), Some(Token(ch, tokens.RParen)))
-        "," -> #(advance(lexer), Some(Token(ch, tokens.Comma)))
         "+" -> #(advance(lexer), Some(Token(ch, tokens.Plus)))
+        "," -> #(advance(lexer), Some(Token(ch, tokens.Comma)))
+        ")" -> #(advance(lexer), Some(Token(ch, tokens.RParen)))
+        "(" -> #(advance(lexer), Some(Token(ch, tokens.LParen)))
         "{" -> #(advance(lexer), Some(Token(ch, tokens.LBrace)))
         "}" -> #(advance(lexer), Some(Token(ch, tokens.RBrace)))
         _ -> #(advance(lexer), Some(Token(ch, tokens.EOF)))
