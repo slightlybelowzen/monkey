@@ -1,5 +1,6 @@
 name = "monkey"
 version = "1.0.0"
+gleam = ">= 0.32.0"
 
 # description = "A simple compiler for the monkey programming language based on the book Writing a Compiler by Thorsten Ball"
 # licences = ["Apache-2.0"]

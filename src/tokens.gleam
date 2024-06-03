@@ -10,6 +10,12 @@ pub type TokenType {
   // operators
   Assign
   Plus
+  Minus
+  Bang
+  Asterisk
+  Slash
+  Lt
+  Gt
 
   // charcters
   Comma
