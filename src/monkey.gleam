@@ -38,6 +38,8 @@ pub fn main() -> Result(List(Token), ConsoleError) {
   let welcome_message = "monkey v" <> version
   io.println(welcome_message)
   case argv.load().arguments {
+    // ideally we'd like an interpreter option but since I don't want to go down that 
+    // rabbit hole we'll stick with this for the time being
     ["-f", filepath] | ["--file", filepath] -> get_tokens(filepath)
     _ -> {
       io.println(help_message)
